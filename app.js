@@ -13,21 +13,6 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let userInput = prompt('Let\'s play against the AI! Best out of 5! Type "Rock", "Paper", "Scissors":').toLowerCase();
-    switch (userInput) {
-        case "rock":
-            return "rock";
-        case "paper":
-            return "paper";
-        case "scissors":
-            return "scissors";
-        default:
-            alert("Oops! Try Again! Please type either 'Rock', 'Paper', 'Scissors'");
-            getHumanChoice();
-    }
-}
-
 let humanScore = 0;
 let computerScore = 0;
 
@@ -52,7 +37,9 @@ function playRound(humanChoice, computerChoice, roundNum) {
     } else {
         resultText.textContent = "It's a tie!";
     }
-    results.appendChild(document.createElement("p"));
+    results.appendChild(resultText);
     }
 
-buttons.forEach((button) => {button.addEventListener("click", playRound)});
+buttons.forEach((button) => {button.addEventListener("click", (e) => {
+    playRound(e.target.id, getComputerChoice(), 1);
+})});
