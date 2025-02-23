@@ -1,5 +1,5 @@
 const results = document.querySelector("div.results");
-const buttons = document.querySelectorAll("Button");
+const buttons = document.querySelectorAll("button");
 
 function getComputerChoice() {
     let num = Math.floor(Math.random()*3);
