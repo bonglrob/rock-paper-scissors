@@ -16,6 +16,12 @@ function getComputerChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+function showComputerChoice(selection) {
+    const computerChoiceText = document.createElement("p");
+    computerChoiceText.textContent = `AI plays ${selection}`;
+    results.appendChild(computerChoiceText);
+}
+
 function playRound(humanChoice, computerChoice, roundNum) {
     const roundHeader = 
         document.querySelector("div.results > h2") || 
@@ -41,6 +47,7 @@ function playRound(humanChoice, computerChoice, roundNum) {
     } else {
         resultText.textContent = "It's a tie!";
     }
+    showComputerChoice(computerChoice);
     results.appendChild(resultText);
     }
 
