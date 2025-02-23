@@ -1,3 +1,6 @@
+const results = document.querySelector("div.results");
+const buttons = document.querySelectorAll("Button");
+
 function getComputerChoice() {
     let num = Math.floor(Math.random()*3);
     switch (num) {
@@ -29,26 +32,27 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice, roundNum) {
-    console.log(`Round ${roundNum}\n\n\n`);
+    const roundHeader = 
+        document.querySelector("div.results > h2") || 
+        document.createElement("h2");
+    
+    roundHeader.textContent = `Round ${roundNum}`;
+    results.appendChild(roundHeader);    
+
+    const resultText =
+        document.querySelector("div.results > p") ||
+        document.createElement("p");
+        
     if (computerChoice === 'scissors' && humanChoice === 'rock' || computerChoice === 'paper' && humanChoice === 'scissors' || computerChoice === 'rock' && humanChoice === 'paper') {
-        console.log('Human wins!');
+        resultText.textContent = "Human wins!";
         humanScore++;
     } else if (computerChoice === 'scissors' && humanChoice === 'paper' || computerChoice === 'paper' && humanChoice === 'rock' || computerChoice === 'rock' && humanChoice === 'scissors') {
-        console.log('AI Wins!');
+        resultText.textContent = "AI wins!";
         computerScore++;
     } else {
-        console.log("It's a tie!");
+        resultText.textContent = "It's a tie!";
     }
-}
-
-function playGame() {
-    for (let i = 1; i < 6; i++) {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice, i);
+    results.appendChild(document.createElement("p"));
     }
-    console.log(`Human Score: ${humanScore}`);
-    console.log(`Computer Score: ${computerScore}`);
-}
 
-playGame();
+buttons.forEach((button) => {button.addEventListener("click", playRound)});
