@@ -28,10 +28,14 @@ function playRound(humanChoice, computerChoice, roundNum) {
         document.querySelector("div.results > p") ||
         document.createElement("p");
         
-    if (computerChoice === 'scissors' && humanChoice === 'rock' || computerChoice === 'paper' && humanChoice === 'scissors' || computerChoice === 'rock' && humanChoice === 'paper') {
+    if (computerChoice === 'scissors' && humanChoice === 'rock' ||
+        computerChoice === 'paper' && humanChoice === 'scissors' ||
+        computerChoice === 'rock' && humanChoice === 'paper') {
         resultText.textContent = "Human wins!";
         humanScore++;
-    } else if (computerChoice === 'scissors' && humanChoice === 'paper' || computerChoice === 'paper' && humanChoice === 'rock' || computerChoice === 'rock' && humanChoice === 'scissors') {
+    } else if (computerChoice === 'scissors' && humanChoice === 'paper' ||
+        computerChoice === 'paper' && humanChoice === 'rock' ||
+        computerChoice === 'rock' && humanChoice === 'scissors') {
         resultText.textContent = "AI wins!";
         computerScore++;
     } else {
@@ -42,4 +46,5 @@ function playRound(humanChoice, computerChoice, roundNum) {
 
 buttons.forEach((button) => {button.addEventListener("click", (e) => {
     playRound(e.target.id, getComputerChoice(), 1);
-})});
+    })
+});
