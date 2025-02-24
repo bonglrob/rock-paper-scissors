@@ -28,6 +28,17 @@ function showChoice(player, selection) {
     return computerChoiceText;
 }
 
+function showScore() {
+    const scoreText = document.querySelector("div.results > p.score");
+    scoreText.remove
+
+    scoreText.classList.add("score");
+    scoreText.textContent = `Human Score: ${humanScore}` +
+                            `Computer Score: ${computerScore}`;
+
+    return scoreText;
+}
+
 function playRound(humanChoice, computerChoice) {
     const roundHeader = 
         document.querySelector("div.results > h2") || 
@@ -54,7 +65,6 @@ function playRound(humanChoice, computerChoice) {
     } else {
         resultText.textContent = "It's a tie!";
     }
-    results.appendChild(document.createElement("br"));
     humanChoiceText = showChoice("You", humanChoice);
     computerChoiceText = showChoice("AI", computerChoice);
     results.appendChild(humanChoiceText);
