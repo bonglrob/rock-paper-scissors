@@ -13,20 +13,27 @@ function getComputerChoice() {
     }
 }
 
+let roundNum = 0;
 let humanScore = 0;
 let computerScore = 0;
 
-function showComputerChoice(selection) {
-    const computerChoiceText = document.createElement("p");
-    computerChoiceText.textContent = `AI plays ${selection}`;
-    results.appendChild(computerChoiceText);
+function showChoice(player, selection) {
+    const computerChoiceText = 
+        document.querySelector(`div.results > p.${player}`) ||
+        document.createElement("p");
+
+    computerChoiceText.classList.add(player);
+
+    computerChoiceText.textContent = `${player} plays ${selection}`;
+    return computerChoiceText;
 }
 
-function playRound(humanChoice, computerChoice, roundNum) {
+function playRound(humanChoice, computerChoice) {
     const roundHeader = 
         document.querySelector("div.results > h2") || 
         document.createElement("h2");
     
+    roundNum++;
     roundHeader.textContent = `Round ${roundNum}`;
     results.appendChild(roundHeader);    
 
@@ -47,11 +54,15 @@ function playRound(humanChoice, computerChoice, roundNum) {
     } else {
         resultText.textContent = "It's a tie!";
     }
-    showComputerChoice(computerChoice);
+    results.appendChild(document.createElement("br"));
+    humanChoiceText = showChoice("You", humanChoice);
+    computerChoiceText = showChoice("AI", computerChoice);
+    results.appendChild(humanChoiceText);
+    results.appendChild(computerChoiceText);
     results.appendChild(resultText);
     }
 
 buttons.forEach((button) => {button.addEventListener("click", (e) => {
-    playRound(e.target.id, getComputerChoice(), 1);
+    playRound(e.target.id, getComputerChoice());
     })
 });
